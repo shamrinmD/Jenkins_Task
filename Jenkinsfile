@@ -4,21 +4,12 @@ pipeline {
     stages {
         stage('Build') {
             steps {
-                script {
-                    sh 'mvn package'
-                }
-            }
-        }
-        stage('Test') {
-            steps {
-                script {
-                    sh 'java -jar target/Task.jar'
-                }
+                sh 'mvn clean package'
             }
         }
         stage('Archive') {
             steps {
-                archiveArtifacts artifacts: 'target/Task.jar'
+                archiveArtifacts 'target/my-Task.jar'
             }
         }
     }
