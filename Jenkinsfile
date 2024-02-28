@@ -5,7 +5,6 @@ pipeline {
         stage('Build') {
             steps {
                 script {
-		    git 'https://github.com/shamrinmD/Jenkins_Task.git'
                     sh 'mvn package'
                 }
             }
