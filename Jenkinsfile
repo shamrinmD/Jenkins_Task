@@ -1,14 +1,11 @@
 pipeline {
-    agent {
-        docker {
-            image 'maven:latest'
-            args '-v $HOME/.m2:/root/.m2'
-        }
-    }
+    agent any
+
     stages {
         stage('Build') {
             steps {
                 script {
+		    git 'https://github.com/shamrinmD/Jenkins_Task.git'
                     sh 'mvn package'
                 }
             }
@@ -22,7 +19,7 @@ pipeline {
         }
         stage('Archive') {
             steps {
-                archiveArtifacts artifacts: 'target/Task.jar', followSymlinks: false
+                archiveArtifacts artifacts: 'target/Task.jar'
             }
         }
     }
